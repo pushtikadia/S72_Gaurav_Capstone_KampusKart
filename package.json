@@ -5,7 +5,7 @@
   "description": "Root workspace orchestrator for KampusKart (frontend + backend)",
   "packageManager": "npm@9",
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=20.19.0"
   },
   "workspaces": [
     "frontend",

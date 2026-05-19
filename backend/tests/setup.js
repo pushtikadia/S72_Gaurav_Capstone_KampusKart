@@ -23,10 +23,7 @@ beforeAll(async () => {
   }
 
   if (process.env.MONGODB_URI) {
-    await mongoose.connect(process.env.MONGODB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await mongoose.connect(process.env.MONGODB_URI);
   }
 });
 

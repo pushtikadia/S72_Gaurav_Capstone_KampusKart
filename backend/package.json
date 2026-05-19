@@ -10,7 +10,7 @@
     "test": "jest",
     "test:integration": "jest --testPathPattern=integration.test.js$",
     "lint": "eslint .",
-    "test:local": "cross-env NODE_ENV=test jest",
+    "test:local": "node -e \"process.env.NODE_ENV='test'; require('child_process').spawnSync('jest', { stdio: 'inherit', shell: true, env: process.env })\"",
     "test-keep-alive": "node scripts/test-keep-alive.js",
     "setup-uptime": "node scripts/setup-uptime-monitoring.js",
     "seed": "node scripts/seedData.js"
@@ -56,10 +56,9 @@
     "jest": "^29.7.0",
     "mongodb-memory-server": "^11.0.1",
     "nodemon": "^3.0.3",
-    "supertest": "^6.3.4",
-    "cross-env": "^7.0.3"
+    "supertest": "^6.3.4"
   },
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=20.19.0"
   }
 }

@@ -8,7 +8,7 @@
   [![Live Demo](https://img.shields.io/badge/Live%20Demo-kampuskart.netlify.app-00C7B7?style=flat-square&logo=netlify&logoColor=white)](https://kampuskart.netlify.app)
   [![CI](https://github.com/kalviumcommunity/S72_Gaurav_Capstone_KampusKart/actions/workflows/ci.yml/badge.svg)](https://github.com/kalviumcommunity/S72_Gaurav_Capstone_KampusKart/actions/)
   [![License](https://img.shields.io/badge/License-Proprietary-red?style=flat-square)](LICENSE)
-  [![Node](https://img.shields.io/badge/Node.js-%3E%3D16-339933?style=flat-square&logo=node.js&logoColor=white)](https://nodejs.org)
+  [![Node](https://img.shields.io/badge/Node.js-%3E%3D20.19.0-339933?style=flat-square&logo=node.js&logoColor=white)](https://nodejs.org)
 
 </div>
 
@@ -66,7 +66,7 @@ KampusKart is a full-stack campus management portal built for MIT ADT University
 | Layer | Technologies |
 |-------|-------------|
 | Frontend | React 18, TypeScript 5, Vite 6, Tailwind CSS 3, Material UI 7, Framer Motion, Socket.IO Client |
-| Backend | Node.js 18 (CommonJS), Express 5, MongoDB, Mongoose, JWT, Passport.js, Socket.IO, Cloudinary, Nodemailer |
+| Backend | Node.js 20.19.0 (CommonJS), Express 5, MongoDB, Mongoose, JWT, Passport.js, Socket.IO, Cloudinary, Nodemailer |
 | Infrastructure | Netlify (frontend), Render (backend), MongoDB Atlas, GitHub Actions |
 | Testing | Vitest + React Testing Library (frontend), Jest + Supertest (backend) |
 
@@ -114,7 +114,7 @@ Open frontend at `http://localhost:5173`.
 
 ### Prerequisites
 
-- Node.js >= 16
+- Node.js >= 20.19.0
 - MongoDB (local or [Atlas](https://www.mongodb.com/cloud/atlas))
 - Cloudinary account
 - Google Cloud project with OAuth 2.0 credentials
@@ -312,6 +312,27 @@ KampusKart/
 | `ci.yml` | Push / PR to `main`, `develop` | Lint, build, test, security audit |
 | `cd.yml` | Push to `main` | Deploy frontend to Netlify, trigger Render deploy |
 | `keep-alive.yml` | Every 14 minutes | Ping backend to prevent Render cold starts |
+
+### Deployment Notes
+
+- Netlify uses the root `.nvmrc`, which is pinned to Node `20.19.0`.
+- GitHub Actions also reads `.nvmrc`, so CI and deployment use the same Node version.
+- Frontend production builds use `npm run build:verify` and publish `frontend/dist`.
+- Backend tests can run locally without Docker using `cd backend && npm run test:local`.
+- If you do want Docker-backed Mongo locally, start the service first:
+
+```bash
+docker compose up -d
+cd backend
+npm test
+```
+
+### Required Deployment Secrets
+
+- `VITE_GOOGLE_MAPS_API_KEY` for the frontend build
+- `NETLIFY_AUTH_TOKEN` and `NETLIFY_SITE_ID` for Netlify deploys
+- `RENDER_API_KEY` and `RENDER_SERVICE_ID` for backend deploys
+- `BACKEND_URL` for uptime/keep-alive pings
 
 ### Required GitHub Secrets
 
