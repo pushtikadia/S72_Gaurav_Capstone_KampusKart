@@ -1,10 +1,11 @@
 [build]
   base = "frontend"
-  command = "npm run build:verify"
+  command = "npm ci --include=optional --no-audit --no-fund && npm run build:verify"
   publish = "dist"
 
 [build.environment]
   NODE_VERSION = "20.19.0"
+  NETLIFY_SKIP_INSTALL = "true"
   NPM_FLAGS = "--include=optional"
   VITE_API_URL = "https://s72-gaurav-capstone-kampuskart.onrender.com"
   VITE_SOCKET_URL = "https://s72-gaurav-capstone-kampuskart.onrender.com"
