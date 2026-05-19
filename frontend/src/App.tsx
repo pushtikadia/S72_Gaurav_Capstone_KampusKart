@@ -54,7 +54,7 @@ const GoogleCallback: React.FC = () => {
     } else {
       setDone(true);
     }
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
 
   if (!done) return null;
   return <Navigate to="/home" />;

@@ -40,22 +40,25 @@ export const LostFoundForm: React.FC<LostFoundFormProps> = ({
 
   const validateField = (name: string, value: string): string | null => {
     switch (name) {
-      case 'title':
+      case 'title': {
         if (!value.trim()) return 'Title is required';
         if (value.trim().length < 3) return 'Title must be at least 3 characters';
         return null;
-      case 'description':
+      }
+      case 'description': {
         if (!value.trim()) return 'Description is required';
         if (value.trim().length < 10) return 'Description must be at least 10 characters';
         return null;
-      case 'date':
+      }
+      case 'date': {
         if (!value) return 'Date is required';
         const selectedDate = new Date(value);
         const today = new Date();
         today.setHours(0, 0, 0, 0);
         if (selectedDate > today) return 'Date cannot be in the future';
         return null;
-      case 'contact':
+      }
+      case 'contact': {
         if (!value.trim()) return 'Contact information is required';
         if (value.includes('@')) {
           const emailRes = validateEmail(value);
@@ -65,6 +68,7 @@ export const LostFoundForm: React.FC<LostFoundFormProps> = ({
           if (!phoneRes.isValid) return phoneRes.error || 'Invalid phone';
         }
         return null;
+      }
       default:
         return null;
     }
