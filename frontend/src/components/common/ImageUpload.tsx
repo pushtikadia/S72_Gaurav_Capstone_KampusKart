@@ -99,7 +99,7 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
           <div className="flex text-sm text-gray-600">
             <label
               htmlFor={id}
-              className={`relative cursor-pointer bg-white rounded-md font-medium text-[#3FA9F6] hover:text-blue-500 focus-within:outline-none ${
+              className={`relative cursor-pointer bg-white rounded-md font-medium text-[#3FA9F6] hover:text-blue-500 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500 ${
                 disabled || isMaxReached ? 'opacity-50 cursor-not-allowed' : ''
               }`}
             >
