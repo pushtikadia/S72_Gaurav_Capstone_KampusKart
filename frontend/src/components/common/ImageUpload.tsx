@@ -73,9 +73,14 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
     } else {
       onImagesChange([...images, ...newImages]);
     }
+    e.target.value = '';
   };
 
   const handleRemoveImage = (index: number) => {
+    const targetImage = images[index];
+    if (targetImage && targetImage.previewUrl) {
+      URL.revokeObjectURL(targetImage.previewUrl);
+    }
     const newImages = images.filter((_, i) => i !== index);
     onImagesChange(newImages);
   };
